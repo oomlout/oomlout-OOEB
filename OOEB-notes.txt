@@ -1,0 +1,10 @@
+;######  OOEB NOTES  ######
+;##########################
+
+
+;###### Modules to add to universal PCB
+
+LED
+Button
+Thermistor
+Potentiometer
