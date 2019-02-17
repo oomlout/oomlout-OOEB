@@ -22,3 +22,8 @@
 	*PIN 6	-	SLEEP		-	ACTIVE HIGH	
 	*PIN 7	-	STEP		-	Pin 2
 	*PIN 8	-	DIRECTION	-	Pin 3	
+
+;######  Stepper Motors
+
+	;## Four WQire Standard
+	BLACK	GREEN	RED		BLUEbgrl
