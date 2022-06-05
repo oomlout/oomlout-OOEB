@@ -1,7 +1,7 @@
 #import OOEB_library as oe
 
-import OOEB_library as ooeb
-import OPSC_insert as opsc
+import OOEB as ooeb
+import OPSC as opsc
 
 color = "red"
 
