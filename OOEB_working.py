@@ -29,6 +29,10 @@ def makePart(part):
 
 def makeFiles(part):
     file = "parts\\" + part + "\\" + part 
+
+    opsc.saveToStl(file + "-3dprint.scad")
+    opsc.saveToPng(file + "-3dprint.scad")
+        
     opsc.saveToStl(file + "-3DPR.scad")
     opsc.saveToPng(file + "-3DPR.scad")
 
@@ -43,8 +47,6 @@ def makeFiles(part):
     opsc.saveToPng(file + "-laser.scad")
     opsc.saveToDxf(file + "-laser.scad")
 
-    opsc.saveToStl(file + "-3dprint.scad")
-    opsc.saveToPng(file + "-3dprint.scad")
 
     
 #parts = ["nutM3"]
@@ -52,9 +54,11 @@ from solid.objects import *
 
 def makeParts():
     parts = [
+            "OOEB-INPU-BUTA-X",
+            "OOEB-INPU-POTE-X",
+            "OOEB-OBBB-PROJ-ARDC-SHEN-STAN-01",
             "OOEB-OUTP-LEDS-X",
-            "OOEB-BASE-3X2"
-            
+            "OOEB-BASE-PCB-3X2"            
             ]
     for part in parts:
         makePart(part)    
@@ -62,8 +66,8 @@ def makeParts():
         makeFiles(part) 
         x=0
 
-parts = color(c="red")(cube(size=[10,20,30]))
-
-opsc.saveToScad("parts/test/test.scad",parts)
+######  Test
+#parts = color(c="red")(cube(size=[10,20,30]))
+#opsc.saveToScad("parts/test/test.scad",parts)
 
 makeParts()        

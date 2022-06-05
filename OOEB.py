@@ -14,11 +14,37 @@ oobbWidth03 = (3 * 15) - 3
     ######  OOEB variables
 ooebWireExtra = 0.5    
 
+######  Modules Brains
+def ooebObbbProjArdcStan01(color):
+    return  cube([10,10,10])
 
 ######  Modules Input
 
+def ooebInpuButaX(color):
+    mode = opsc.getMode()
+    mainWidth = oobbWidth03
+    mainHeight = oobbWidth02
 
+    but06Pos = [0,-5,0]
+    but12Pos = but06Pos
+    resPos=[-10,-5,0]
 
+    part = opsc.item()
+    part.addPos(insert("OOEB-BASE-3X2",color=color))
+    part.addNeg(oomp.insert("OOMP-BUTA-06-X-X-01",pos=but06Pos,color=color))
+    part.addNeg(oomp.insert("OOMP-BUTA-12-X-X-01",pos=but12Pos,color=color))
+    if(mode == "TRUE"):            
+        part.addPos(oomp.insert("OOMP-BUTA-06-X-X-01",pos=but06Pos,rotZ=0,color=color))
+        part.addPos(oomp.insert("OOMP-BUTA-12-X-X-01",pos=but12Pos,rotZ=0,color=color))
+        part.addPos(oomp.insert("OOMP-RESE-W04-X-O561-01",pos=resPos,rotZ=90,color=color))
+
+    part.addNeg(oomp.insert("OOMP-RESE-W04-X-O561-01",pos=resPos,rotZ=90,color=color))
+    return part.getPart()
+
+def ooebInpuPoteX(color):
+    return cube([10,10,10])
+
+######  Modules Output
 def ooebOutpLedsX(color):
     mode = opsc.getMode()
     mainWidth = oobbWidth03
@@ -28,12 +54,14 @@ def ooebOutpLedsX(color):
     part.addNeg(oomp.insert("OOMP-LEDS-10-X-X-01",pos=[0,-5,0],rotZ=45,color=color))
     if(mode == "TRUE"):            
         part.addPos(oomp.insert("OOMP-LEDS-10-X-X-01",pos=[0,-5,0],rotZ=45,color=color))
-        part.addPos(oomp.insert("OOMP-RESE-W04-X-X-01",pos=[-10,-5,0],rotZ=90,color=color))
+        part.addPos(oomp.insert("OOMP-RESE-W04-X-O561-01",pos=[-10,-5,0],rotZ=90,color=color))
 
-    part.addNeg(oomp.insert("OOMP-RESE-W04-X-X-01",pos=[-10,-5,0],rotZ=90,color=color))
+    part.addNeg(oomp.insert("OOMP-RESE-W04-X-O561-01",pos=[-10,-5,0],rotZ=90,color=color))
     return part.getPart()
 
-######  Modules Output
+
+
+
 
 ######  Module Helpers
 
@@ -152,13 +180,24 @@ def OOEBInsertIf(item,pos=[None,None,None],x=0,y=0,z=0,ex=0,size=[None,None,None
 
     #print(pos)
 
-    if(item=="OOEB-WIRE-BA"):
+    if(x=="22222222"):
+        x=0
+    ######  OOEB-WIRE        
+    elif(item=="OOEB-WIRE-BA"):
         returnValue = ooebWireBa(color)
+    ######  OOEB-OBBB    
+    elif(item=="OOEB-OBBB-PROJ-ARDC-SHEN-STAN-01"):
+        returnValue = ooebObbbProjArdcStan01(color)
+    ######  OOEB-INPU
+    elif(item=="OOEB-INPU-BUTA-X"):
+        returnValue = ooebInpuButaX(color)
+    elif(item=="OOEB-INPU-POTE-X"):
+        returnValue = ooebInpuPoteX(color)
     ######  OOEB-OUTP        
     elif(item=="OOEB-OUTP-LEDS-X"):
         returnValue = ooebOutpLedsX(color)
 
-    ######  OOEB-INPU    
+    ######  OOEB-BASE    
     elif(item=="OOEB-BASE-3X2"):
         returnValue = baseModule3x2(color)
 
