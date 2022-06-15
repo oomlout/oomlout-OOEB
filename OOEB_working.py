@@ -58,7 +58,8 @@ def makeParts():
             "OOEB-INPU-POTE-X",
             "OOEB-OBBB-PROJ-ARDC-SHEN-STAN-01",
             "OOEB-OUTP-LEDS-X",
-            "OOEB-BASE-PCB-3X2"            
+            "OOEB-BASE-3X2-PCB"            ,
+            "OOEB-OBBB-BASE-4X3"            
             ]
     for part in parts:
         makePart(part)    
@@ -70,4 +71,9 @@ def makeParts():
 #parts = color(c="red")(cube(size=[10,20,30]))
 #opsc.saveToScad("parts/test/test.scad",parts)
 
-makeParts()        
+#makeParts()        
+
+#part = "OOEB-BASE-3X2-PCB" 
+part = "OOEB-OBBB-PROJ-ARDC-SHEN-STAN-01"
+makePart(part)
+makeFiles(part)

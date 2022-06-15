@@ -10,13 +10,16 @@ import OOMPscad as oomp
     ######  OOBB variables
 oobbWidth02 = (2 * 15) - 3
 oobbWidth03 = (3 * 15) - 3
+oobbWidth04 = (4 * 15) - 3
 
     ######  OOEB variables
 ooebWireExtra = 0.5    
 
 ######  Modules Brains
 def ooebObbbProjArdcStan01(color):
-    return  cube([10,10,10])
+    part = opsc.item()
+    part.addPos(baseModule4x3(color))
+    return part.getPart()
 
 ######  Modules Input
 
@@ -60,10 +63,65 @@ def ooebOutpLedsX(color):
     return part.getPart()
 
 
+def baseModule3x2PCB(color):
+    part = opsc.item()
+    part.addPos(insert("OOEB-BASE-3X2",color=opsc.colOOEBbase))
+    part.addNeg(insert("plane",depth=6.101,z=.1))
+
+
+
+    return part.getPart()
 
 
 
 ######  Module Helpers
+
+
+def baseModule4x3(color,depth=6):
+    mode = opsc.getMode()
+
+    mainWidth = oobbWidth04
+    mainHeight = oobbWidth03
+    mainDepth = depth
+    holeM6APos = [-22.5,15,0]
+    holeM6BPos = [-22.5,-15,0]
+
+    holeM3APos = [4.5,-15,0]
+    nutM3APos = [holeM3APos[0],holeM3APos[1],-mainDepth+opsc.nutM3depth-.01]
+    captiveStandoffM3APos = [holeM3APos[0],holeM3APos[1],-3]
+    
+    holeM3BPos = [4.5,15,0]
+    nutM3BPos = [holeM3BPos[0],holeM3BPos[1],-mainDepth+opsc.nutM3depth-.01]
+    captiveStandoffM3BPos = [holeM3BPos[0],holeM3BPos[1],-3]
+
+
+
+    part = opsc.item()
+    part.addPos(insert("cubeRounded",width=mainWidth,height=mainHeight,depth=mainDepth,color=opsc.colOOEBbase))
+        ###### Negative Parts
+    ######  Holes
+    part.addNeg(insert("nutM3",pos=nutM3APos))
+    part.addNeg(insert("nutM3",pos=nutM3BPos))
+    part.addNeg(insert("holeM6",pos=holeM6APos))
+    part.addNeg(insert("holeM6",pos=holeM6BPos))
+    part.addNeg(insert("holeM3",pos=holeM3APos))
+    part.addNeg(insert("holeM3",pos=holeM3BPos))
+    ######  Clearance
+    depth = 3.1
+    z = 0.1
+        # Main ARDC clearance
+    part.addNeg(insert("cube",pos=[7,0,z],size=[43.18,22.86,depth]))    
+        # Bottom wing
+    part.addNeg(insert("cube",pos=[17.16,0,z],size=[17.78,27.94,depth]))   
+        # Top wing
+    part.addNeg(insert("cube",pos=[-6.97,0,z],size=[15.24,27.94,depth]))    
+        # i2C Clearince
+    part.addNeg(insert("cube",pos=[-22.21,0,z],size=[10.16,15.24,depth]))   
+        # Resistors
+    part.addNeg(insert("cube",pos=[-10.5,16.5,z],size=[10,6,depth]))    
+
+    return part.getPart()
+
 
 def baseModule3x2(color):
 
@@ -197,9 +255,15 @@ def OOEBInsertIf(item,pos=[None,None,None],x=0,y=0,z=0,ex=0,size=[None,None,None
     elif(item=="OOEB-OUTP-LEDS-X"):
         returnValue = ooebOutpLedsX(color)
 
+    ######  OOEB-OBBBB-BASE-4X3    
+    elif(item=="OOEB-BASE-3X2"):
+        returnValue = baseModule3x2(color)
     ######  OOEB-BASE    
     elif(item=="OOEB-BASE-3X2"):
         returnValue = baseModule3x2(color)
+    ######  OOEB-BASE    
+    elif(item=="OOEB-BASE-3X2-PCB"):
+        returnValue = baseModule3x2PCB(color)
 
     else:    
         returnValue = opsc.insert(item,[None,None,None],0,0,0,ex,size,length,[None,None,None],0,0,0,width,height,depth,rad,rad2,color,alpha,OOwidth,OOheight,holes,negative,name)
