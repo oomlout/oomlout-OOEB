@@ -1,4 +1,4 @@
-20239480317328596
+20244443771313864
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -60269,6 +60269,27 @@ OOEB-XXXX-03-02
 0
 0
 0
+OOEB-footprints
+OOEB-XXXX-04-03
+
+
+0
+0
+0
+OOEB-footprints
+OOEB-XXXX-04-03-ARDC
+
+
+0
+0
+0
+OOEB-footprints
+R_2816_7142Metric_Pad3.20x4.45mm_HandSolder
+Resistor SMD 2816 (7142 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size from: https://www.vishay.com/docs/30100/wsl.pdf), generated with kicad-footprint-generator
+resistor handsolder
+0
+2
+2
 OptoDevice
 ADNS-9800
 Laser Gaming Sensor ADNS-9800
